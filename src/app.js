@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const errorHandler = require('./middlewares/errorHandler');
+const categoriesRouter = require('./modules/categories/routes');
+const warehousesRouter = require('./modules/warehouses/routes');
+const productsRouter = require('./modules/products/routes');
 
 const app = express();
 
@@ -14,6 +17,10 @@ app.use('/api/auth', require('./modules/auth/routes'));
 // ÖRNEK modül — kendi domain modülünüzü (customers, tasks, employees, appointments...)
 // aynı pattern ile buraya ekleyin: app.use('/api/customers', require('./modules/customers/routes'));
 app.use('/api/example-items', require('./modules/example/routes'));
+
+app.use('/api/categories', categoriesRouter);
+app.use('/api/warehouses', warehousesRouter);
+app.use('api/products', productsRouter);
 
 // 404 handler
 app.use((req, res) => {
