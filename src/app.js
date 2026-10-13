@@ -4,6 +4,7 @@ const errorHandler = require('./middlewares/errorHandler');
 const categoriesRouter = require('./modules/categories/routes');
 const warehousesRouter = require('./modules/warehouses/routes');
 const productsRouter = require('./modules/products/routes');
+const stockMovementsRouter = require('./modules/stock-movements/routes');
 
 const app = express();
 
@@ -20,7 +21,9 @@ app.use('/api/example-items', require('./modules/example/routes'));
 
 app.use('/api/categories', categoriesRouter);
 app.use('/api/warehouses', warehousesRouter);
-app.use('api/products', productsRouter);
+app.use('/api/products', productsRouter);
+app.use('/api/stock-movements', stockMovementsRouter);
+
 
 // 404 handler
 app.use((req, res) => {

@@ -9,7 +9,7 @@ function authenticate(req, res, next) {
   const header = req.headers.authorization;
 
   if (!header || !header.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Token bulunamadı' });
+    return res.status(401).json({ message: 'Token not found.' });
   }
 
   const token = header.split(' ')[1];
@@ -23,7 +23,7 @@ function authenticate(req, res, next) {
     };
     next();
   } catch (err) {
-    return res.status(401).json({ message: 'Geçersiz veya süresi dolmuş token' });
+    return res.status(401).json({ message: 'Invalid or expired token.' });
   }
 }
 
